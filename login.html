@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portal Login | Allegro Music Co.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+    <style>
+        :root {
+            /* DARK MODE (DEFAULT) */
+            --color-bg-void: #0B0F19;
+            --color-bg-surface: #141A26;
+            --color-bg-elevated: #1E293B;
+            --color-border: #2B3446;
+            --color-border-hover: #3F4D67;
+            --color-primary: #7C3AED;
+            --color-primary-hover: #8B5CF6;
+            --color-primary-dim: rgba(124, 58, 237, 0.12);
+            --color-primary-glow: rgba(124, 58, 237, 0.08);
+            --color-secondary: #00D4FF;
+            --color-accent: #F59E0B;
+            --color-text-primary: #FFFFFF;
+            --color-text-muted: #CBD5E1;
+            --color-text-faint: #94A3B8;
+            --color-status-ok: #22C55E;
+            --color-status-warn: #FBBF24;
+            --color-status-err: #F87171;
+
+            --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #00D4FF 100%);
+            --gradient-hero: linear-gradient(135deg, #0B0F19 0%, #141A26 40%, #1E293B 100%);
+            --gradient-accent: linear-gradient(135deg, #F59E0B 0%, #FB923C 100%);
+
+            --transition-main: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        html.light {
+            --color-bg-void: #F8FAFC;
+            --color-bg-surface: #FFFFFF;
+            --color-bg-elevated: #F1F5F9;
+            --color-border: #E5E7EB;
+            --color-border-hover: #CBD5E1;
+            --color-primary: #7C3AED;
+            --color-primary-hover: #6D28D9;
+            --color-primary-dim: rgba(124, 58, 237, 0.10);
+            --color-primary-glow: rgba(124, 58, 237, 0.06);
+            --color-secondary: #06B6D4;
+            --color-accent: #F59E0B;
+            --color-text-primary: #111827;
+            --color-text-muted: #4B5563;
+            --color-text-faint: #6B7280;
+            --color-status-ok: #10B981;
+            --color-status-warn: #F59E0B;
+            --color-status-err: #EF4444;
+
+            --gradient-primary: linear-gradient(135deg, #7C3AED 0%, #06B6D4 100%);
+            --gradient-hero: linear-gradient(135deg, #F8FAFC 0%, #FFFFFF 40%, #E2E8F0 100%);
+        }
+
+        /* Focus states */
+        input:focus, select:focus, textarea:focus, button:focus {
+            outline: 2px solid #7C3AED !important;
+            outline-offset: 2px;
+        }
+
+        /* Selection colors */
+        ::selection {
+            background-color: #7C3AED;
+            color: #FFFFFF;
+        }
+
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #7C3AED;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8B5CF6;
+        }
+
+        *, *::after, *::before {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-bg-void);
+            color: var(--color-text-primary);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+            position: relative;
+        }
+
+        /* Film Grain Texture */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+        }
+
+        .auth-container {
+            width: 100%;
+            max-width: 480px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Logo styling */
+        .logo-box {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .brand-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary-dim);
+            border-radius: 50%;
+            color: var(--color-primary);
+            border: 1px solid var(--color-primary);
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-wordmark {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 0.05em;
+            line-height: 1;
+        }
+
+        .logo-studio {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--color-primary);
+            line-height: 1;
+            margin-top: 2px;
+        }
+
+        /* Card styles */
+        .auth-card {
+            background: var(--color-bg-surface);
+            border: 1px solid var(--color-border);
+            border-radius: 18px;
+            padding: 40px;
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        html:not(.light) .auth-card {
+            background: rgba(20, 26, 38, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .auth-card:hover {
+            border-color: var(--color-primary);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.15);
+        }
+
+        h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            font-size: 32px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .tagline {
+            font-size: 12px;
+            text-align: center;
+            color: var(--color-text-faint);
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-size: 11px;
+            letter-spacing: 0.15em;
+            display: block;
+            margin-bottom: 8px;
+            color: var(--color-text-muted);
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            background: var(--color-bg-void);
+            border: 1px solid var(--color-border);
+            border-radius: 14px;
+            padding: 0 15px;
+            color: var(--color-text-primary);
+            font-family: inherit;
+            font-size: 14px;
+            outline: none;
+            transition: border-color var(--transition-main);
+        }
+
+        input:focus {
+            border-color: var(--color-primary);
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .pass-group {
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .pass-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .forgot-link {
+            font-size: 11px;
+            color: var(--color-primary);
+            text-decoration: none;
+            letter-spacing: 0.05em;
+            transition: opacity 0.3s;
+        }
+
+        .forgot-link:hover {
+            opacity: 0.8;
+        }
+
+        .toggle-btn {
+            position: absolute;
+            right: 15px;
+            bottom: 15px;
+            background: none;
+            border: none;
+            color: var(--color-text-faint);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            outline: none;
+        }
+
+        .btn {
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            height: 50px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-main);
+            width: 100%;
+            outline: none;
+            border: none;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: #FFFFFF;
+            box-shadow: 0 4px 14px rgba(124, 58, 237, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--color-primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(124, 58, 237, 0.6), 0 0 15px var(--color-primary-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--color-secondary);
+            color: var(--color-secondary);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--color-secondary);
+            background: var(--color-secondary);
+            color: #0B0F19;
+            box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .divider-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 25px;
+        }
+
+        .divider-line {
+            height: 1px;
+            background: var(--color-border);
+            flex-grow: 1;
+        }
+
+        .divider-text {
+            font-size: 10px;
+            color: var(--color-text-faint);
+            letter-spacing: 0.1em;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .social-btn {
+            display: flex;
+            gap: 10px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 13px;
+        }
+
+        .footer-text {
+            font-size: 11px;
+            text-align: center;
+            color: var(--color-text-faint);
+            letter-spacing: 0.05em;
+        }
+
+        .footer-text a {
+            color: var(--color-primary);
+            font-weight: 600;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Float controls */
+        .top-actions {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .icon-btn {
+            width: 44px;
+            height: 44px;
+            background: var(--color-bg-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-main);
+        }
+
+        .icon-btn:hover {
+            border-color: var(--color-primary);
+            color: var(--color-primary);
+            transform: translateY(-2px);
+        }
+
+        /* RTL Styles */
+        html[dir="rtl"] .top-actions {
+            right: auto;
+            left: 20px;
+        }
+        html[dir="rtl"] .toggle-btn {
+            right: auto;
+            left: 15px;
+        }
+        html[dir="rtl"] input[type="password"] {
+            padding: 0 15px 0 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top floating navigation actions -->
+    <div class="top-actions">
+        <button class="icon-btn" onclick="toggleDarkMode()" title="Toggle Theme">
+            <i data-lucide="moon" id="themeIcon"></i>
+        </button>
+        <button class="icon-btn" onclick="toggleRTL()" id="rtlBtn" title="Switch to Right-to-Left (RTL) Layout">
+            <i data-lucide="arrow-left-right" style="width: 16px; height: 16px;"></i>
+        </button>
+    </div>
+
+    <div class="auth-container">
+        <!-- Login Card -->
+        <div class="auth-card">
+            <!-- Brand Logo Header -->
+            <a href="index.html" class="logo-box" style="justify-content: center; margin-bottom: 25px;">
+                <div class="brand-logo">
+                    <i data-lucide="music"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-wordmark">ALLEGRO</span>
+                    <span class="logo-studio">Music Co.</span>
+                </div>
+            </a>
+
+            <h2>Portal Access</h2>
+            <p class="tagline">Enter your customer details to manage rentals, view invoices, or track custom orders.</p>
+            
+            <form onsubmit="event.preventDefault(); alert('Login successful (demonstration only).'); window.location.href='index.html';">
+                <!-- Email -->
+                <div class="input-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input type="email" required placeholder="name@domain.com">
+                </div>
+
+                <!-- Password -->
+                <div class="pass-group">
+                    <div class="pass-header">
+                        <label>PASSWORD</label>
+                        <a href="#" class="forgot-link" onclick="event.preventDefault(); alert('Password reset link sent to email.');">FORGOT PASSWORD?</a>
+                    </div>
+                    <input type="password" id="loginPass" required placeholder="••••••••">
+                    <button type="button" class="toggle-btn" onclick="togglePass('loginPass', this)">
+                        <i data-lucide="eye"></i>
+                    </button>
+                </div>
+
+                <!-- Action Button -->
+                <button type="submit" class="btn btn-primary" style="margin-bottom: 20px;">Log In</button>
+            </form>
+
+            <!-- Social Connect Divider -->
+            <div class="divider-box">
+                <span class="divider-line"></span>
+                <span class="divider-text">OR CONNECT WITH</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <!-- Social Connection Grid -->
+            <div class="social-grid">
+                <button type="button" class="btn btn-secondary social-btn" onclick="alert('Google authentication simulation.');">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12.24 10.285V14.4h6.887c-.648 2.41-2.519 4.114-5.136 4.114-3.555 0-6.444-2.889-6.444-6.444s2.889-6.444 6.444-6.444c1.625 0 3.102.603 4.238 1.597L21.2 4.39C19.1 2.378 16.035 1.136 12.24 1.136c-6 0-10.864 4.864-10.864 10.864s4.864 10.864 10.864 10.864c5.776 0 10.231-4.053 10.231-10.231 0-.693-.082-1.218-.218-1.548H12.24z"/></svg>
+                    <span>GOOGLE</span>
+                </button>
+                <button type="button" class="btn btn-secondary social-btn" onclick="alert('Apple authentication simulation.');">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 4.17c.66-.81 1.11-1.93.99-3.06-1 .04-2.2.67-2.92 1.49-.62.71-1.16 1.85-1.01 2.96 1.1.09 2.23-.58 2.94-1.39z"/></svg>
+                    <span>APPLE</span>
+                </button>
+            </div>
+
+            <!-- Footer Redirection -->
+            <p class="footer-text">DON'T HAVE AN ACCOUNT? <a href="signup.html">CREATE ONE HERE</a></p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Theme Management
+        const htmlElement = document.documentElement;
+        const themeIcon = document.getElementById('themeIcon');
+
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            if (savedTheme === 'light') {
+                htmlElement.classList.add('light');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            } else {
+                htmlElement.classList.remove('light');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            }
+            lucide.createIcons();
+        }
+
+        function toggleDarkMode() {
+            if (htmlElement.classList.contains('light')) {
+                htmlElement.classList.remove('light');
+                localStorage.setItem('theme', 'dark');
+                themeIcon.setAttribute('data-lucide', 'moon');
+            } else {
+                htmlElement.classList.add('light');
+                localStorage.setItem('theme', 'light');
+                themeIcon.setAttribute('data-lucide', 'sun');
+            }
+            lucide.createIcons();
+        }
+
+        // Initialize theme on load
+        loadTheme();
+
+        // RTL Management
+        function loadRTL() {
+            const savedRTL = localStorage.getItem('rtl') || 'ltr';
+            htmlElement.setAttribute('dir', savedRTL);
+            syncRTLButton();
+        }
+
+        function toggleRTL() {
+            const isRTL = htmlElement.getAttribute('dir') === 'rtl';
+            const newDir = isRTL ? 'ltr' : 'rtl';
+            htmlElement.setAttribute('dir', newDir);
+            localStorage.setItem('rtl', newDir);
+            syncRTLButton();
+        }
+
+        function syncRTLButton() {
+            const isRTL = htmlElement.getAttribute('dir') === 'rtl';
+            const rtlBtn = document.getElementById('rtlBtn');
+            const label = rtlBtn.querySelector('span');
+            if (label) {
+                label.textContent = isRTL ? 'LTR' : 'RTL';
+            }
+            rtlBtn.setAttribute('title', isRTL ? 'Switch to Left-to-Right (LTR) Layout' : 'Switch to Right-to-Left (RTL) Layout');
+        }
+
+        // Initialize RTL on load
+        loadRTL();
+
+        // Toggle Password visibility
+        function togglePass(id, btn) {
+            const input = document.getElementById(id);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.setAttribute('data-lucide', 'eye-off');
+            } else {
+                input.type = 'password';
+                icon.setAttribute('data-lucide', 'eye');
+            }
+            lucide.createIcons();
+        }
+    </script>
+</body>
+</html>
