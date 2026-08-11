@@ -447,18 +447,23 @@
 
 
         .cta-btn-sm {
-            border: 0.5px solid var(--color-primary);
+            border: 1px solid var(--color-primary);
             color: var(--color-primary);
-            padding: 10px 20px;
+            padding: 12px 24px;
             font-family: 'Bebas Neue';
-            font-size: 12px;
-            letter-spacing: 0.1em;
-            background: transparent;
+            font-size: 16px;
+            letter-spacing: 0.15em;
+            background: rgba(11, 15, 25, 0.85);
+            backdrop-filter: blur(4px);
+            border-radius: 4px;
+            transition: var(--transition-main);
         }
 
         .cta-btn-sm:hover {
-            background: var(--color-primary-dim);
+            background: var(--color-primary);
+            color: #FFFFFF;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px var(--color-primary-glow);
         }
 
         /* --- HERO SECTION --- */
@@ -537,7 +542,7 @@
         }
 
         .hero h1 {
-            font-size: clamp(48px, 8vw, 80px);
+            font-size: clamp(40px, 7vw, 70px);
             line-height: 1.1;
             margin-bottom: 30px;
         }
@@ -610,6 +615,20 @@
             color: #0B0F19;
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-tab {
+            background: transparent;
+            border: 1px solid var(--color-border);
+            color: var(--color-text-muted);
+            border-radius: 4px;
+        }
+
+        .btn-tab:hover {
+            border-color: var(--color-primary);
+            color: var(--color-text-primary);
+            background: var(--color-primary-dim);
+            transform: translateY(-2px);
         }
 
         .hero-btns {
@@ -773,6 +792,33 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.7);
             letter-spacing: 0.12em;
+        }
+
+        @media (max-width: 768px) {
+            #about-view .founder-hero-card {
+                flex-direction: column !important;
+                align-items: center !important;
+                text-align: center !important;
+                width: 100% !important;
+                box-sizing: border-box !important;
+                padding: 20px !important;
+                gap: 16px !important;
+            }
+
+            #about-view .founder-hero-card > div:first-child {
+                width: 100px !important;
+                height: 100px !important;
+                flex-shrink: 0 !important;
+            }
+
+            #about-view .founder-hero-card img {
+                width: 100px !important;
+                height: 100px !important;
+            }
+
+            #about-view .founder-hero-card p {
+                text-align: center;
+            }
         }
 
         #about-view .about-founder-main {
@@ -1010,11 +1056,11 @@
         }
 
         .project-genre {
-            color: var(--color-primary);
-            font-size: 12px;
+            color: #C084FC;
+            font-size: 14px;
             margin-bottom: 10px;
             text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9);
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 0.15em;
         }
 
@@ -1406,6 +1452,13 @@
             margin-right: 20px;
         }
 
+        body.rtl .hero-content,
+        body.rtl .hero-content h1,
+        body.rtl .hero-content p,
+        body.rtl .hero-content .hero-tagline {
+            text-align: right !important;
+        }
+
         body.rtl .timeline-container {
             padding-left: 0;
             padding-right: 40px;
@@ -1430,6 +1483,22 @@
         body.rtl .timeline-item::before {
             left: auto;
             right: -45px;
+        }
+
+        /* RTL Timeline Correction for About Page */
+        body.rtl #about-view .timeline-container {
+            padding-right: 0 !important;
+            border-right: none !important;
+        }
+
+        body.rtl #about-view .timeline-line {
+            left: 50% !important;
+            right: auto !important;
+            transform: translateX(-50%) !important;
+        }
+
+        #about-view .timeline-item::before {
+            display: none !important;
         }
 
         body.rtl .sidebar {
@@ -1592,6 +1661,11 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
+            .contact-locations-grid {
+                grid-template-columns: 1fr !important;
+                gap: 40px !important;
+            }
+
             #contact-view .container {
                 padding-left: 20px !important;
                 padding-right: 20px !important;
@@ -1752,6 +1826,26 @@
 
             .command-center-card p {
                 font-size: 13px !important;
+            }
+
+            /* Partners — 2 columns on tablet */
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 20px !important;
+            }
+
+            .partners-grid h3 {
+                font-size: 20px !important;
+                letter-spacing: 0.08em !important;
+            }
+
+            .partners-grid .floating-card {
+                padding: 20px !important;
+            }
+
+            /* Remove blank space above Showroom SPOTLIGHT */
+            .spotlight-section {
+                margin-top: 0 !important;
             }
         }
 
@@ -2031,9 +2125,9 @@
         .marquee-item {
             display: inline-block;
             font-family: 'Bebas Neue';
-            font-size: 80px;
+            font-size: 40px;
             color: var(--color-text-primary);
-            margin-right: 60px;
+            margin-right: 40px;
             -webkit-text-stroke: 1px var(--color-text-primary);
             color: transparent;
             transition: color 0.3s ease;
@@ -2362,6 +2456,149 @@
                 right: auto;
                 left: 20px;
             }
+
+            .hero-cta-group {
+                flex-direction: column !important;
+                align-items: flex-start !important;
+                gap: 14px !important;
+            }
+
+            .hero-cta-group .btn {
+                width: 100%;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            .heritage-heading {
+                font-size: 36px !important;
+            }
+
+            /* Service Page — stack service cards one per row */
+            .services-detail-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+
+            /* Flip cards full width + auto height on mobile */
+            .flip-card {
+                width: 100% !important;
+                height: 420px !important;
+            }
+
+            /* Partners grid — 2 columns on mobile, smaller text */
+            .partners-grid {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 12px !important;
+            }
+
+            .partners-grid h3 {
+                font-size: 16px !important;
+                letter-spacing: 0.04em !important;
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .partners-grid .floating-card {
+                padding: 16px 10px !important;
+            }
+
+            /* Remove blank space above Showroom SPOTLIGHT */
+            .spotlight-section {
+                margin-top: 0 !important;
+            }
+
+            /* Technician Cards — stack one per row on mobile */
+            .audio-nodes-grid {
+                grid-template-columns: 1fr !important;
+                gap: 24px !important;
+            }
+
+            .node-card {
+                width: 100% !important;
+            }
+
+            /* Timeline Mobile Fix */
+            .timeline-container {
+                padding-left: 20px !important;
+                overflow: hidden;
+            }
+
+            /* Hide center vertical line on mobile */
+            #about-view .timeline-line,
+            .timeline-container > .timeline-line {
+                display: none !important;
+            }
+
+            /* Stack each milestone to single column */
+            .timeline-item {
+                display: flex !important;
+                flex-direction: column !important;
+                gap: 20px !important;
+                margin-bottom: 50px !important;
+                grid-template-columns: unset !important;
+            }
+
+            /* Reset all inline padding on milestone children */
+            .timeline-item > div {
+                text-align: left !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+                width: 100% !important;
+                justify-content: flex-start !important;
+            }
+
+            /* Make timeline images full width */
+            .timeline-image-wrapper {
+                width: 100% !important;
+                height: 180px !important;
+            }
+
+            /* Hide the absolute center dot — it misplaces on mobile */
+            .timeline-item > div:last-child[style*="position: absolute"] {
+                display: none !important;
+            }
+
+            /* Milestones heading */
+            #about-view h2.italic[style*="56px"] {
+                font-size: 36px !important;
+            }
+
+            .console-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+
+            .console-image-card {
+                height: 240px !important;
+            }
+
+            .console-grid h2 {
+                font-size: 32px !important;
+            }
+
+            .synthesis-grid {
+                grid-template-columns: 1fr !important;
+                gap: 30px !important;
+            }
+
+            .synth-card {
+                grid-template-columns: 1fr !important;
+                min-height: auto !important;
+            }
+
+            .synth-card > div:first-child {
+                height: 200px !important;
+            }
+
+            .console-metrics {
+                gap: 20px !important;
+            }
+        }
+
+        .filmstrip-container .project-card {
+            padding: 0 !important;
+            height: 450px !important;
         }
     </style>
 </head>
@@ -2409,14 +2646,19 @@
 
     <!-- Sidebar (Mobile) -->
     <div class="sidebar" id="sidebar">
-        <div class="logo-box" style="padding-bottom: 20px; border-bottom: 0.5px solid var(--color-border); margin-bottom: 20px;">
-            <div class="brand-logo" style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary);">
-                <i data-lucide="music" style="width:24px; height:24px;"></i>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding-bottom: 20px; border-bottom: 0.5px solid var(--color-border); margin-bottom: 20px;">
+            <div class="logo-box">
+                <div class="brand-logo" style="display:flex; align-items:center; justify-content:center; width:48px; height:48px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary);">
+                    <i data-lucide="music" style="width:24px; height:24px;"></i>
+                </div>
+                <div class="logo-text">
+                    <span class="logo-wordmark bebas">ALLEGRO</span>
+                    <span class="logo-studio cormorant italic">Music Co.</span>
+                </div>
             </div>
-            <div class="logo-text">
-                <span class="logo-wordmark bebas">ALLEGRO</span>
-                <span class="logo-studio cormorant italic">Music Co.</span>
-            </div>
+            <button onclick="toggleSidebar()" aria-label="Close menu" style="background: none; border: 1px solid var(--color-border); border-radius: 50%; width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); cursor: pointer; flex-shrink: 0; transition: var(--transition-main);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-primary)'">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+            </button>
         </div>
         <nav style="display: flex; flex-direction: column; gap: 20px;">
             <a href="#home" class="nav-link" onclick="showPage('home')">Home</a>
@@ -2446,17 +2688,17 @@
         <!-- PAGE 1: HOME (COMPOSITE) -->
         <div id="home-view" class="view-container">
 <!-- Hero -->
-            <section id="home-hero" class="hero" style="display: flex; justify-content: flex-start; background-image: url('assets/images/home-hero-bg.png');">
+            <section id="home-hero" class="hero" style="display: flex; justify-content: flex-start; background-image: url('https://t4.ftcdn.net/jpg/01/34/63/49/360_F_134634981_8uttr7zAszUhF6eX8jVqGgL6eLAuiFih.jpg');">
                 <div class="scanline"></div>
                 <div class="hero-overlay"></div>
                 <div class="container hero-content" style="text-align: left; margin: 0;">
                     <span class="hero-tagline bebas reveal" style="text-align: left;">ESTABLISHED 1995 · THE MUSICIAN'S CHOICE</span>
-                    <h1 class="cormorant italic reveal" style="text-align: left; font-size: clamp(60px, 10vw, 100px);">
+                    <h1 class="cormorant italic reveal" style="text-align: left;">
                         Where Music Finds Its Voice</h1>
                     <p class="mono reveal" style="text-align: left; margin: 0 0 40px 0;">Guitars, Keyboards, Drums, and Flutes. Hand-selected for exceptional sound.</p>
-                    <div class="reveal" style="display: flex; gap: 20px;">
+                    <div class="reveal hero-cta-group" style="display: flex; gap: 20px;">
                         <a href="#projects" class="btn btn-primary" onclick="showPage('projects')">Browse Showroom</a>
-                        <a href="#tools" class="btn btn-secondary" onclick="showPage('tools')">Rent Instrument</a>
+                        <a href="#tools" class="btn btn-tab" onclick="showPage('tools')">Rent Instrument</a>
                     </div>
                 </div>
             </section>
@@ -2502,10 +2744,10 @@
                     <div class="about-image" style="background-image: url('assets/images/premium-hero-bg.png');"></div>
                     <div class="about-text">
                         <span class="section-label bebas">HERITAGE</span>
-                        <h2 class="italic" style="font-size: 56px; margin: 20px 0;">A Legacy of Sound</h2>
+                        <h2 class="italic heritage-heading" style="font-size: 56px; margin: 20px 0;">A Legacy of Sound</h2>
                         <p class="mono" style="margin-bottom: 20px; line-height: 1.8; font-size: 16px;">For over three decades, our family-owned store has been the heartbeat of the local music community. We believe that buying an instrument is a personal, life-changing decision. That's why we don't just sell instruments—we carefully select, calibrate, and tune every piece of wood and metal that leaves our showroom.</p>
                         <p class="mono" style="margin-bottom: 30px; line-height: 1.8; font-size: 16px;">Whether you are a student picking up your first flute, an educator ordering for your school band, or a seasoned artist looking for a custom-shop guitar, we are here to support your creative journey with expert guidance and master-level repair services.</p>
-                        <a href="#about" class="btn btn-secondary" onclick="showPage('about')">Our Story & Brands →</a>
+                        <a href="#about" class="btn btn-tab" onclick="showPage('about')">Our Story & Brands →</a>
                         
                         <div class="stats-row">
                             <div class="stat-card" style="border-right: 0.5px solid var(--color-border); padding: 10px 0;">
@@ -2613,8 +2855,8 @@
                         <div class="quote-icon">“</div>
                         <p class="quote-text mono">“The staff here spent two hours helping my daughter pick her first flute. Their patience and knowledge are unmatched.”</p>
                         <div class="client-info">
-                            <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary);">
-                                <i data-lucide="user" style="width:20px; height:20px;"></i>
+                            <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary); overflow:hidden;">
+                                <img src="assets/images/profile-elena.png" alt="Elena Moretti">
                             </div>
                             <div>
                                 <h4 class="client-name cormorant">Elena Moretti</h4>
@@ -2626,8 +2868,8 @@
                         <div class="quote-icon">“</div>
                         <p class="quote-text mono">“Their luthiers did a complete restoration on my vintage 1968 Gibson. The playability is absolutely incredible now.”</p>
                         <div class="client-info">
-                            <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary);">
-                                <i data-lucide="user" style="width:20px; height:20px;"></i>
+                            <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary); overflow:hidden;">
+                                <img src="assets/images/profile-julian.png" alt="Julian De Vos">
                             </div>
                             <div>
                                 <h4 class="client-name cormorant">Julian De Vos</h4>
@@ -2639,8 +2881,8 @@
                         <div class="quote-icon">“</div>
                         <p class="quote-text mono">“Our entire university music department relies on them for bulk orders, rentals, and annual instrument maintenance.”</p>
                         <div class="client-info">
-                            <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary);">
-                                <i data-lucide="user" style="width:20px; height:20px;"></i>
+                            <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary); overflow:hidden;">
+                                <img src="assets/images/profile-sarah.png" alt="Sarah Kincaid">
                             </div>
                             <div>
                                 <h4 class="client-name cormorant">Sarah Kincaid</h4>
@@ -2669,7 +2911,7 @@
                 <div class="hero-overlay premium-hero-overlay"></div>
                 <div class="container hero-content" style="text-align: left; margin: 0;">
                     <span class="hero-tagline bebas reveal" style="text-align: left;">PREMIUM SELECTIONS</span>
-                    <h1 class="cormorant italic reveal" style="text-align: left; font-size: clamp(60px, 10vw, 100px);">
+                    <h1 class="cormorant italic reveal" style="text-align: left;">
                         The Custom Shop</h1>
                     <p class="mono reveal" style="text-align: left; margin: 0 0 40px 0;">Exquisite, rare, and master-built instruments for the discerning collector and professional artist.</p>
                     <a href="#projects" class="btn btn-primary" onclick="showPage('projects')">View Collections</a>
@@ -2803,12 +3045,17 @@
                     <div class="quote-icon" style="font-size: 100px; padding: 0; line-height: 0.5;">“</div>
                     <h2 class="cormorant italic" style="font-size: 48px; line-height: 1.4; margin: 30px 0 40px;">
                         "An instrument from Allegro's Custom Shop is a work of art. The resonance of the solid rosewood back and sides is unlike anything I've ever played."</h2>
-                    <div class="client-info" style="justify-content: center; margin-top: 20px;">
-                        <h4 class="bebas" style="font-size: 20px; color: var(--color-primary); letter-spacing: 0.1em; margin: 0;">
-                            JULIAN DE VOS</h4>
-                        <span style="color: var(--color-border); margin: 0 15px;">|</span>
-                        <p class="mono" style="font-size: 12px; letter-spacing: 0.2em; color: var(--color-text-faint); margin: 0;">
-                            RECORDING ARTIST</p>
+                    <div class="client-info" style="display: flex; justify-content: center; align-items: center; margin-top: 20px; gap: 15px;">
+                        <div class="client-avatar" style="display:flex; align-items:center; justify-content:center; width:50px; height:50px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary); overflow:hidden;">
+                            <img src="assets/images/profile-julian.png" alt="Julian De Vos" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                        <div style="display: flex; align-items: center;">
+                            <h4 class="bebas" style="font-size: 20px; color: var(--color-primary); letter-spacing: 0.1em; margin: 0;">
+                                JULIAN DE VOS</h4>
+                            <span style="color: var(--color-border); margin: 0 15px;">|</span>
+                            <p class="mono" style="font-size: 12px; letter-spacing: 0.2em; color: var(--color-text-faint); margin: 0;">
+                                RECORDING ARTIST</p>
+                        </div>
                     </div>
                 </div>
             </section>
@@ -2832,7 +3079,7 @@
         <!-- PAGE 3: PROJECTS / PORTFOLIO -->
         <div id="projects-view" class="view-container" style="display: none;">
 <section>
-                <section class="hero" style="display: flex; background-image: url('assets/images/home-hero-bg.png');">
+                <section class="hero" style="display: flex; background-image: url('https://i0.wp.com/chicagoreader.com/wp-content/uploads/2021/08/best_musical_instrument_shop-old_town_school_music_store-1.jpg?fit=780%2C520&ssl=1');">
                     <div class="scanline"></div>
                     <div class="hero-overlay"></div>
                     <div class="container hero-content">
@@ -2917,10 +3164,10 @@
             </section>
 
             <!-- UNIQUE SECTION 1: Wipe Reveal Animation -->
-            <section class="section-padding container reveal" style="margin-top: 60px;">
-                <span class="section-label bebas">SPOTLIGHT</span>
+            <section class="section-padding container reveal spotlight-section" style="margin-top: 60px;">
                 <div class="projects-unique-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 15px; align-items: center;">
                     <div>
+                        <span class="section-label bebas" style="margin-bottom: 10px;">SPOTLIGHT</span>
                         <h2 class="cormorant italic" style="font-size: 56px; line-height: 1.1; margin-top: 0;">Anatomy of a Scene: The Martin D-28</h2>
                         <p class="mono" style="margin-top: 20px;">Crafted from East Indian Rosewood and Sitka Spruce, the D-28 is the benchmark against which all acoustic guitars are compared. Its rich, deep bass and clear trebles have shaped music history for nearly a century.</p>
                     </div>
@@ -2931,8 +3178,8 @@
 
             <!-- UNIQUE SECTION 2: Sonic Architecture (Hover Accordion) -->
             <section class="section-padding container reveal">
-                <span class="section-label bebas">METHODOLOGY</span>
-                <h2 class="cormorant italic" style="font-size: 56px; margin: 30px 0;">Instrument Philosophy</h2>
+                <span class="section-label bebas" style="margin-bottom: 10px;">METHODOLOGY</span>
+                <h2 class="cormorant italic" style="font-size: 56px; margin: 0 0 30px 0;">Instrument Philosophy</h2>
                 <div class="accordion-container">
                     <div class="accordion-card wipe-reveal" style="background-image: url('assets/images/keyboard-category.png');">
                         <div class="accordion-title-vertical">01. TONAL WOODS</div>
@@ -2978,15 +3225,15 @@
             <section class="section-padding container reveal" style="padding-top: 0;">
                 <div class="projects-unique-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;">
                     <div class="float-container">
-                        <div class="float-item" style="width: 250px; height: 250px; border-radius: 50%; border: 1px solid var(--color-primary); display: flex; flex-direction: column; align-items: center; justify-content: center; top: 10%; left: 10%;">
+                        <div class="float-item" style="width: 250px; height: 250px; border-radius: 50%; border: 1px solid var(--color-primary); display: flex; flex-direction: column; align-items: center; justify-content: center; top: 10%; left: 10%; background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), url('assets/images/guitar-category.png'); background-size: cover; background-position: center; overflow: hidden;">
                             <span class="bebas" style="font-size: 40px; color: var(--color-primary);">15k +</span>
-                            <span class="mono" style="font-size: 10px; margin-top: 5px;">INSTRUMENTS SOLD</span>
+                            <span class="mono" style="font-size: 10px; margin-top: 5px; color: #ffffff;">INSTRUMENTS SOLD</span>
                         </div>
-                        <div class="float-item" style="width: 180px; height: 180px; border-radius: 50%; border: 1px dashed var(--color-text-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; bottom: 20%; right: 10%;">
-                            <span class="bebas" style="font-size: 30px; color: var(--color-text-primary);">500 +</span>
-                            <span class="mono" style="font-size: 10px; margin-top: 5px;">ACTIVE RENTALS</span>
+                        <div class="float-item" style="width: 180px; height: 180px; border-radius: 50%; border: 1px dashed var(--color-text-muted); display: flex; flex-direction: column; align-items: center; justify-content: center; bottom: 20%; right: 10%; background: linear-gradient(rgba(11, 15, 25, 0.75), rgba(11, 15, 25, 0.75)), url('assets/images/band-fleet.png'); background-size: cover; background-position: center; overflow: hidden;">
+                            <span class="bebas" style="font-size: 30px; color: #ffffff;">500 +</span>
+                            <span class="mono" style="font-size: 10px; margin-top: 5px; color: rgba(255, 255, 255, 0.75);">ACTIVE RENTALS</span>
                         </div>
-                        <div class="float-item" style="width: 100px; height: 100px; border-radius: 50%; background: var(--color-primary-dim); top: 40%; right: 40%;">
+                        <div class="float-item" style="width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(rgba(139, 92, 246, 0.4), rgba(139, 92, 246, 0.4)), url('assets/images/drum-category.png'); background-size: cover; background-position: center; top: 40%; right: 40%; border: 1px solid var(--color-primary); overflow: hidden;">
                         </div>
                     </div>
                     <div>
@@ -3001,7 +3248,7 @@
         <!-- PAGE 4: ABOUT FULL -->
         <div id="about-view" class="view-container" style="display: none;">
 <section>
-                <section class="hero" style="display: flex; background-image: url('assets/images/home-hero-bg.png');">
+                <section class="hero" style="display: flex; background-image: url('https://static.vecteezy.com/system/resources/thumbnails/070/627/231/small/acoustic-guitars-displayed-in-music-store-a-variety-of-stringed-instruments-for-musicians-and-hobbyists-photo.jpeg');">
                     <div class="scanline"></div>
                     <div class="hero-overlay"></div>
                     <div class="container hero-content">
@@ -3009,8 +3256,8 @@
                         <h1 class="cormorant italic reveal active">Our Story</h1>
                         <p class="mono reveal active">A family-owned music shop built by luthiers, technicians, and educators focused on quality.</p>
                         <div class="founder-hero-card reveal active">
-                            <div style="display:flex; align-items:center; justify-content:center; width:150px; height:150px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary); flex-shrink:0;">
-                                <i data-lucide="user" style="width:64px; height:64px;"></i>
+                            <div style="display:flex; align-items:center; justify-content:center; width:150px; height:150px; background:var(--color-primary-dim); border-radius:50%; color:var(--color-primary); border:1px solid var(--color-primary); flex-shrink:0; overflow:hidden;">
+                                <img src="assets/images/profile-arthur.png" alt="Arthur Pendelton" style="width:100%; height:100%; object-fit:cover;">
                             </div>
                             <div>
                                 <strong>ARTHUR PENDELTON</strong>
@@ -3117,7 +3364,7 @@
                     <div class="audio-nodes-grid" style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
                         <!-- Node 1 -->
                         <div class="floating-card node-card" style="padding: 0; overflow: hidden; border: 0.5px solid var(--color-border);">
-                            <div style="height: 250px; background-image: url('assets/images/profile-julian.png'); background-size: cover; background-position: center; width: 100%;"></div>
+                            <div style="height: 250px; background-image: url('assets/images/profile-arthur.png'); background-size: cover; background-position: center; width: 100%;"></div>
                             <div style="padding: 20px;">
                                 <h4 class="cormorant" style="font-size: 20px; margin-bottom: 5px;">Arthur Pendelton</h4>
                                 <span class="mono" style="font-size: 11px; color: var(--color-primary); text-transform: uppercase;">Founder & Guitar Luthier</span>
@@ -3156,12 +3403,12 @@
         <div id="contact-view" class="view-container" style="display: none;">
 
             <!-- Contact Hero -->
-            <section id="contact-hero" class="hero" style="display: flex; justify-content: center; background-image: url('assets/images/home-hero-bg.png');">
+            <section id="contact-hero" class="hero" style="display: flex; justify-content: center; background-image: url('https://in.yamaha.com/en/files/raj_musicals_2_tcm142-2451523.jpeg?impolicy=resize&imwid=1280&imhei=853');">
                 <div class="scanline"></div>
                 <div class="hero-overlay"></div>
                 <div class="container hero-content" style="text-align: center;">
                     <span class="hero-tagline bebas reveal active">INQUIRIES</span>
-                    <h1 class="cormorant italic reveal active" style="text-align: center; font-size: clamp(60px, 10vw, 100px);">
+                    <h1 class="cormorant italic reveal active" style="text-align: center;">
                         Let's Connect</h1>
                     <p class="mono reveal active" style="text-align: center; margin: 0 auto 40px auto; max-width: 600px;">Get in touch for school band program orders, instrument trade-in valuations, rental support, or Custom Shop orders. Our specialists are here to guide you.</p>
                     <a href="#contact-form" class="btn btn-primary" onclick="document.getElementById('name').focus()">Send Us a Message</a>
@@ -3169,7 +3416,7 @@
             </section>
 
         <section id="contact-form" class="section-padding container reveal" style="min-height: 85vh; display: block;">
-                <div class="contact-grid">
+                <div class="contact-layout contact-grid">
                     <div style="display: flex; flex-direction: column; justify-content: center;">
 
                         <div class="contact-info-cards" style="display: flex; flex-direction: column; gap: 20px;">
@@ -3234,6 +3481,63 @@
                     </div>
                 </div>
             </section>
+
+            <!-- Locations & Map Section -->
+            <section class="reveal" style="border-top: 0.5px solid var(--color-border); padding: 80px 0; margin-top: 60px;">
+                <div class="contact-locations-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;">
+                    <!-- Locations Info & Socials -->
+                    <div>
+                        <span class="section-label bebas">OUR LOCATIONS</span>
+                        <h2 class="cormorant italic" style="font-size: 40px; margin: 20px 0 30px 0;">Visit Our Showrooms</h2>
+                        
+                        <div style="display: flex; flex-direction: column; gap: 30px;">
+                            <!-- Place 1 -->
+                            <div class="floating-card" style="padding: 24px;">
+                                <h3 class="bebas" style="font-size: 18px; color: var(--color-primary); margin-bottom: 10px;">LOS ANGELES (FLAGSHIP)</h3>
+                                <p class="mono" style="font-size: 12px; margin-bottom: 5px; color: var(--color-text-primary);">8840 Wilshire Blvd, Beverly Hills, CA 90211</p>
+                                <p class="mono" style="font-size: 12px; margin-bottom: 5px; color: var(--color-text-muted);">Mon - Sat: 10:00 AM - 7:00 PM <br>Sun: 12:00 PM - 5:00 PM</p>
+                                <p class="mono" style="font-size: 12px; color: var(--color-text-muted);">Phone: +1 (310) 555-0150</p>
+                            </div>
+                            
+                            <!-- Place 2 -->
+                            <div class="floating-card" style="padding: 24px;">
+                                <h3 class="bebas" style="font-size: 18px; color: var(--color-primary); margin-bottom: 10px;">NEW YORK GALLERY</h3>
+                                <p class="mono" style="font-size: 12px; margin-bottom: 5px; color: var(--color-text-primary);">142 W 57th St, New York, NY 10019</p>
+                                <p class="mono" style="font-size: 12px; margin-bottom: 5px; color: var(--color-text-muted);">By Appointment Only <br>Tue - Sat: 11:00 AM - 6:00 PM</p>
+                                <p class="mono" style="font-size: 12px; color: var(--color-text-muted);">Phone: +1 (212) 555-0198</p>
+                            </div>
+                        </div>
+
+                        <!-- Social Media Buttons -->
+                        <div style="margin-top: 40px;">
+                            <span class="mono" style="font-size: 11px; color: var(--color-text-faint); display: block; margin-bottom: 15px; letter-spacing: 0.15em;">CONNECT WITH US</span>
+                            <div style="display: flex; gap: 15px;">
+                                <a href="#" class="icon-btn" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); background: var(--color-bg-surface); transition: var(--transition-main);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-primary)'">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+                                </a>
+                                <a href="#" class="icon-btn" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); background: var(--color-bg-surface); transition: var(--transition-main);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-primary)'">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l11.733 16h4.267l-11.733 -16z"/><path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"/></svg>
+                                </a>
+                                <a href="#" class="icon-btn" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); background: var(--color-bg-surface); transition: var(--transition-main);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-primary)'">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg>
+                                </a>
+                                <a href="#" class="icon-btn" style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--color-border); display: flex; align-items: center; justify-content: center; color: var(--color-text-primary); background: var(--color-bg-surface); transition: var(--transition-main);" onmouseover="this.style.borderColor='var(--color-primary)'; this.style.color='var(--color-primary)'" onmouseout="this.style.borderColor='var(--color-border)'; this.style.color='var(--color-text-primary)'">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17z"/><path d="m10 15 5-3-5-3z"/></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Map Column -->
+                    <div style="width: 100%; display: flex; flex-direction: column;">
+                        <span class="section-label bebas">LOCATION MAP</span>
+                        <h2 class="cormorant italic" style="font-size: 40px; margin: 20px 0 30px 0;">Find Our Flagship</h2>
+                        <div class="floating-card" style="padding: 0; overflow: hidden; height: 420px; border: 1px solid var(--color-border); border-radius: 18px; position: relative; width: 100%;">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3305.6178385627763!2d-118.3854972!3d34.066497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80c2bbf819eb38c9%3A0xe54e6fae15549887!2s8840%20Wilshire%20Blvd%2C%20Beverly%20Hills%2C%20CA%2090211!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" width="100%" height="100%" style="border:0; filter: grayscale(1) invert(1) contrast(1.2);" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </section>
 </div>
 
         <!-- PAGE 6: LOGIN -->
@@ -3256,15 +3560,20 @@
                             <label class="mono" style="font-size: 11px; display: block; margin-bottom: 8px;">EMAIL ADDRESS</label>
                             <input type="email" required style="width: 100%; height: 50px; background: var(--color-bg-void); border: 1px solid var(--color-border); border-radius: 4px; padding: 0 15px; color: var(--color-text-primary); font-family: inherit;">
                         </div>
-                        <div style="margin-bottom: 25px; position: relative;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-                                <label class="mono" style="font-size: 11px; margin: 0;">PASSWORD</label>
-                                <a href="#" class="mono" style="font-size: 11px; color: var(--color-primary); text-decoration: none;" onclick="event.preventDefault(); alert('Password reset link sent.');">FORGOT PASSWORD?</a>
-                            </div>
+                        <div style="margin-bottom: 15px; position: relative;">
+                            <label class="mono" style="font-size: 11px; display: block; margin-bottom: 8px;">PASSWORD</label>
                             <input type="password" id="loginPass" required style="width: 100%; height: 50px; background: var(--color-bg-void); border: 1px solid var(--color-border); border-radius: 4px; padding: 0 50px 0 15px; color: var(--color-text-primary); font-family: inherit;">
                             <button type="button" onclick="togglePass('loginPass', this)" style="position: absolute; right: 15px; bottom: 15px; background: none; border: none; color: var(--color-text-faint); cursor: pointer; display: flex; align-items: center; justify-content: center; padding: 0;">
                                 <i data-lucide="eye" style="width: 20px; height: 20px;"></i>
                             </button>
+                        </div>
+                        <!-- Remember Me & Forgot Password Row -->
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px;">
+                            <label style="display: flex; align-items: center; gap: 8px; cursor: pointer;">
+                                <input type="checkbox" id="rememberMe" style="width: 16px; height: 16px; accent-color: var(--color-primary); cursor: pointer;">
+                                <span class="mono" style="font-size: 11px; color: var(--color-text-muted);">REMEMBER ME</span>
+                            </label>
+                            <a href="#" class="mono" style="font-size: 11px; color: var(--color-primary); text-decoration: none;" onclick="event.preventDefault(); alert('Password reset link sent.');">FORGOT PASSWORD?</a>
                         </div>
                         <button type="submit" class="btn btn-primary" style="width: 100%; height: 50px; margin-bottom: 20px;">Log In</button>
                     </form>
@@ -3501,7 +3810,7 @@
         <!-- PAGE 9: SERVICES -->
         <div id="services-view" class="view-container" style="display: none;">
 <!-- Hero -->
-            <section id="services-hero" class="hero" style="display: flex; background-image: url('assets/images/home-hero-bg.png');">
+            <section id="services-hero" class="hero" style="display: flex; background-image: url('https://www.bexarmusicsatx.com/cdn/shop/files/bexar_music_website_header.png?v=1726767995&width=3840');">
                 <div class="scanline"></div>
                 <div class="hero-overlay"></div>
                 <div class="container hero-content">
@@ -3548,7 +3857,7 @@
                         <div class="scanline"></div>
                         <div style="position: absolute; bottom: 20px; left: 20px; right: 20px; background: rgba(8, 10, 15, 0.85); backdrop-filter: blur(4px); padding: 15px 20px; border: 0.5px solid var(--color-primary); border-radius: 4px;">
                             <span class="bebas" style="font-size: 11px; color: var(--color-primary); letter-spacing: 0.15em;">CALIBRATION LAB</span>
-                            <h4 class="cormorant" style="font-size: 18px; margin-top: 2px;">Arthur Pendelton, Master Luthier</h4>
+                            <h4 class="cormorant" style="font-size: 18px; margin-top: 2px; color: #ffffff;">Arthur Pendelton, Master Luthier</h4>
                         </div>
                     </div>
                     <div>
@@ -3714,7 +4023,44 @@
                             <span class="logo-studio cormorant italic">Music Co.</span>
                         </div>
                     </div>
-                    <p class="mono" style="font-size: 13px;">Crafted for the Love of Music. <br>Premium Instruments, Rentals & Expert Service since 1995.</p>
+                    <p class="mono" style="font-size: 13px; margin-bottom: 20px;">Crafted for the Love of Music. <br>Premium Instruments, Rentals & Expert Service since 1995.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-link social-fb">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link social-ig">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link social-tw" aria-label="X">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M4 4l11.733 16h4.267l-11.733 -16z"></path>
+                                <path d="M4 20l6.768 -6.768m2.46 -2.46l6.772 -6.772"></path>
+                            </svg>
+                        </a>
+                        <a href="#" class="social-link social-li">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
+                                </path>
+                                <rect x="2" y="9" width="4" height="12"></rect>
+                                <circle cx="4" cy="4" r="2"></circle>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-col">
                     <h4>Quick Links</h4>
@@ -3738,45 +4084,13 @@
                     </ul>
                 </div>
                 <div class="footer-col">
-                    <h4>Social</h4>
-                    <div class="social-icons">
-                        <a href="#" class="social-link social-fb">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link social-ig">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link social-tw">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z">
-                                </path>
-                            </svg>
-                        </a>
-                        <a href="#" class="social-link social-li">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
-                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path
-                                    d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z">
-                                </path>
-                                <rect x="2" y="9" width="4" height="12"></rect>
-                                <circle cx="4" cy="4" r="2"></circle>
-                            </svg>
-                        </a>
-                    </div>
+                    <h4>Store Info</h4>
+                    <ul class="footer-links mono" style="font-size: 14px;">
+                        <li>8840 Wilshire Blvd, Beverly Hills, CA</li>
+                        <li>+1 (310) 555-0150</li>
+                        <li>info@allegromusic.com</li>
+                        <li style="margin-top: 10px; color: var(--color-primary); font-weight: 600;">Mon - Sat: 10AM - 7PM</li>
+                    </ul>
                 </div>
             </div>
             <div class="copyright mono">
