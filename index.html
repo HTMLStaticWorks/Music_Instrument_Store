@@ -2228,6 +2228,48 @@
             }
         }
 
+        /* Showroom Filmstrip Continuous Auto-Sliding Marquee */
+        .filmstrip-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden !important;
+            padding: 0 0 60px;
+        }
+
+        .filmstrip-track {
+            display: flex !important;
+            gap: 30px;
+            width: max-content !important;
+            animation: showroomSlide 25s linear infinite !important;
+            will-change: transform;
+        }
+
+        .filmstrip-container:hover .filmstrip-track {
+            animation-play-state: paused !important;
+        }
+
+        .filmstrip-track .project-card {
+            min-width: 380px !important;
+            max-width: 380px !important;
+            flex-shrink: 0 !important;
+        }
+
+        @keyframes showroomSlide {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(-50% - 15px));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .filmstrip-track .project-card {
+                min-width: 300px !important;
+                max-width: 300px !important;
+            }
+        }
+
         /* 4. Floating Elements */
         .float-container {
             position: relative;
@@ -3074,52 +3116,99 @@
                     <span class="section-label bebas">SHOWROOM</span>
                     <h2 class="italic" style="font-size: 48px;">The Showroom Strip</h2>
                 </div>
-                <div class="filmstrip-container hide-scrollbar" style="display: flex; gap: 30px; overflow-x: auto; padding: 0 40px 60px; scroll-snap-type: x mandatory; scrollbar-width: none; -ms-overflow-style: none;">
-                    <!-- Project 1 -->
-                    <div class="floating-card project-card" style="min-width: 400px; max-width: 400px; scroll-snap-align: start; flex-shrink: 0;">
-                        <div class="project-bg" style="background-image: url('assets/images/guitar-category.png');"></div>
-                        <div class="project-overlay"></div>
-                        <div class="project-content">
-                            <span class="project-genre bebas">GUITARS</span>
-                            <h3 class="project-title italic">Fender Custom Shop '56 Strat</h3>
-                            <p class="project-meta mono">Fender · Custom Relic</p>
+                <div class="filmstrip-container hide-scrollbar">
+                    <div class="filmstrip-track">
+                        <!-- Project 1 -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/guitar-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">GUITARS</span>
+                                <h3 class="project-title italic">Fender Custom Shop '56 Strat</h3>
+                                <p class="project-meta mono">Fender · Custom Relic</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
                         </div>
-                        <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
-                    </div>
-                    <!-- Project 2 -->
-                    <div class="floating-card project-card" style="min-width: 400px; max-width: 400px; scroll-snap-align: start; flex-shrink: 0;">
-                        <div class="project-bg" style="background-image: url('assets/images/guitar-category.png');"></div>
-                        <div class="project-overlay"></div>
-                        <div class="project-content">
-                            <span class="project-genre bebas">GUITARS</span>
-                            <h3 class="project-title italic">Martin D-45 Dreadnought</h3>
-                            <p class="project-meta mono">Martin · Pearl Inlays</p>
+                        <!-- Project 2 -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/guitar-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">GUITARS</span>
+                                <h3 class="project-title italic">Martin D-45 Dreadnought</h3>
+                                <p class="project-meta mono">Martin · Pearl Inlays</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
                         </div>
-                        <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
-                    </div>
-                    <!-- Project 3 -->
-                    <div class="floating-card project-card" style="min-width: 400px; max-width: 400px; scroll-snap-align: start; flex-shrink: 0;">
-                        <div class="project-bg" style="background-image: url('assets/images/keyboard-category.png');"></div>
-                        <div class="project-overlay"></div>
-                        <div class="project-content">
-                            <span class="project-genre bebas">KEYBOARDS</span>
-                            <h3 class="project-title italic">Steinway & Sons Model D</h3>
-                            <p class="project-meta mono">Steinway · Concert Grand</p>
+                        <!-- Project 3 -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/keyboard-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">KEYBOARDS</span>
+                                <h3 class="project-title italic">Steinway & Sons Model D</h3>
+                                <p class="project-meta mono">Steinway · Concert Grand</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
                         </div>
-                        <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
-                    </div>
-                    <!-- Project 4 -->
-                    <div class="floating-card project-card" style="min-width: 400px; max-width: 400px; scroll-snap-align: start; flex-shrink: 0;">
-                        <div class="project-bg" style="background-image: url('assets/images/flute-category.png');"></div>
-                        <div class="project-overlay"></div>
-                        <div class="project-content">
-                            <span class="project-genre bebas">FLUTES</span>
-                            <h3 class="project-title italic">Yamaha Custom YFL-894</h3>
-                            <p class="project-meta mono">Yamaha · 14K Gold Flute</p>
+                        <!-- Project 4 -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/flute-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">FLUTES</span>
+                                <h3 class="project-title italic">Yamaha Custom YFL-894</h3>
+                                <p class="project-meta mono">Yamaha · 14K Gold Flute</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
                         </div>
-                        <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
+
+                        <!-- DUPLICATE SET FOR INFINITE CONTINUOUS LOOP -->
+                        <!-- Project 1 (Dup) -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/guitar-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">GUITARS</span>
+                                <h3 class="project-title italic">Fender Custom Shop '56 Strat</h3>
+                                <p class="project-meta mono">Fender · Custom Relic</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
+                        </div>
+                        <!-- Project 2 (Dup) -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/guitar-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">GUITARS</span>
+                                <h3 class="project-title italic">Martin D-45 Dreadnought</h3>
+                                <p class="project-meta mono">Martin · Pearl Inlays</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
+                        </div>
+                        <!-- Project 3 (Dup) -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/keyboard-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">KEYBOARDS</span>
+                                <h3 class="project-title italic">Steinway & Sons Model D</h3>
+                                <p class="project-meta mono">Steinway · Concert Grand</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
+                        </div>
+                        <!-- Project 4 (Dup) -->
+                        <div class="floating-card project-card">
+                            <div class="project-bg" style="background-image: url('assets/images/flute-category.png');"></div>
+                            <div class="project-overlay"></div>
+                            <div class="project-content">
+                                <span class="project-genre bebas">FLUTES</span>
+                                <h3 class="project-title italic">Yamaha Custom YFL-894</h3>
+                                <p class="project-meta mono">Yamaha · 14K Gold Flute</p>
+                            </div>
+                            <div class="project-hover-cta bebas" onclick="showPage('projects')">View Details</div>
+                        </div>
                     </div>
-                    <div style="min-width: 10px; flex-shrink: 0;"></div>
                 </div>
             </section>
 
